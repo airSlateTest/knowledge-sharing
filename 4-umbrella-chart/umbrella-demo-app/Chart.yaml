@@ -1,0 +1,17 @@
+apiVersion: v2
+version: "1.0"
+name: umbrella-demo-app
+dependencies:
+- name: k8s-app-v2
+  version: 0.9.0
+  repository: oci://868276123740.dkr.ecr.us-east-1.amazonaws.com/helm
+  alias: web
+
+- name: k8s-job
+  version: 0.2.0
+  repository: oci://868276123740.dkr.ecr.us-east-1.amazonaws.com/helm
+  alias: migration-job
+
+- name: k8s-common
+  version: 0.6.1
+  repository: oci://868276123740.dkr.ecr.us-east-1.amazonaws.com/helm

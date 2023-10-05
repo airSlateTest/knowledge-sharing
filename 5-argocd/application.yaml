@@ -1,0 +1,58 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: umbrella-demo-app
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: knowlade-sharing-demo
+  project: default
+  source:
+    repoURL: 'https://github.com/pdffiller/common-microservices-infra'
+    path: apps/nginx-app-demo/dev
+    targetRevision: main-chart-demo
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: global.app_name
+          value: nginx-demo
+        - name: global.namespace
+          value: knowlade-sharing-demo
+        - name: global.environment
+          value: cinfra-dev
+        - name: global.metric_prefix
+          value: dev_apps_scaling
+        - name: global.git.repoURL
+          value: 'https://github.com/pdffiller/common-microservices-infra'
+        - name: global.git.revision
+          value: main-chart-demo
+        - name: global.git.path
+          value: apps/nginx-app-demo/dev
+      values: |
+        global:
+          logs:
+          serviceMesh:
+            enabled: true
+            mesh: true
+            gateways:
+            - infra-istio/general-http-trust
+            hosts:
+            - nginx-app-demo.infrateam-dev.xyz
+      version: v3
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry: {}
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas
+    - group: argoproj.io
+      kind: Rollout
+      jsonPointers:
+        - /spec/replicas
+

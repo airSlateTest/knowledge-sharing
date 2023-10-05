@@ -1,0 +1,37 @@
+# @see: https://github.com/pdffiller/helm-charts/blob/master/charts/k8s-app-v2/values.yaml
+global:
+  app_name: umbrella-demo-app
+  namespace: knowlade-sharing-demo
+  image:
+    repository: nginx
+    tag: "1.14.2"
+  
+  labels:
+    infra: "demo-infra"
+    team: "demo-team"
+
+  env_vars:
+  - name: APP_ENV
+    value: "development"
+  - name: APP_DEBUG
+    value: "false"
+
+web:
+  replicas: 1
+  ports:
+  - name: http
+    appPort: 80
+    servicePort: 80
+    protocol: TCP
+  livenessProbe:
+    path: "/"
+  readinessProbe:
+    path: "/"
+
+migration-job:
+  enabled: false
+  command: ["php"]
+  args: ["artisan", "migrate"]
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation

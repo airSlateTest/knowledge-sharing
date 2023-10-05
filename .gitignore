@@ -1,0 +1,39 @@
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# IDE files
+*.idea
+
+# VS code files
+.vscode/*
+
+#MacOS files
+.DS_Store
+
+# .tfvars files
+#*.tfvars
+
+# swap files
+*.swp
+
+/*/*/secret.tfvars
+
+#env files
+.env
+
+#lambda src zip files
+**/tmp/lambda.zip
+
+# Lock hcl
+*.terraform.lock.hcl
+
+*.gz
+*.tgz
+
+Chart.lock
+chart
+rendered
