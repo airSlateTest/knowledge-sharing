@@ -10,7 +10,7 @@ kubectl get namespaces
 
 kubectl apply -f manifests/deployment.yaml
 
-kubectl get po -n knowlade-sharing-demo
+kubectl get po -n knowledge-sharing-demo
 
-kubectl port-forward -n knowlade-sharing-demo nginx-deployment-85996f8dbd-qxstg 8080:80
+kubectl port-forward -n knowledge-sharing-demo nginx-deployment-85996f8dbd-qxstg 8080:80
 ```

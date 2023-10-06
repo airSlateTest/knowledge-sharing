@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: knowlade-sharing-demo
+    namespace: knowledge-sharing-demo
   project: default
   source:
     repoURL: 'https://github.com/pdffiller/common-microservices-infra'
@@ -19,7 +19,7 @@ spec:
         - name: global.app_name
           value: nginx-demo
         - name: global.namespace
-          value: knowlade-sharing-demo
+          value: knowledge-sharing-demo
         - name: global.environment
           value: cinfra-dev
         - name: global.metric_prefix

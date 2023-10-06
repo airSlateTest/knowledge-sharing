@@ -1,7 +1,7 @@
 # @see: https://github.com/pdffiller/helm-charts/blob/master/charts/k8s-app-v2/values.yaml
 global:
   app_name: umbrella-demo-app
-  namespace: knowlade-sharing-demo
+  namespace: knowledge-sharing-demo
   image:
     repository: nginx
     tag: "1.14.2"

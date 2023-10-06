@@ -9,9 +9,9 @@ helm dependency build
 
 helm package .
 
-helm install --namespace knowlade-sharing-demo umbrella-demo-app ./umbrella-demo-app-1.0.tgz -f values.yaml
+helm install --namespace knowledge-sharing-demo umbrella-demo-app ./umbrella-demo-app-1.0.tgz -f values.yaml
 
-helm upgrade --namespace knowlade-sharing-demo --reuse-values --set global.image.tag="1.25.2" umbrella-demo-app ./umbrella-demo-app-1.0.tgz
+helm upgrade --namespace knowledge-sharing-demo --reuse-values --set global.image.tag="1.25.2" umbrella-demo-app ./umbrella-demo-app-1.0.tgz
 ```
 
 ### Useful links
