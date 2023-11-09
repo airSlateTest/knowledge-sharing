@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  nginx-demo:
+    image: nginx:1.25.3
+    restart: always
+    ports:
+      - 8080:80

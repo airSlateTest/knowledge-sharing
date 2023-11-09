@@ -10,5 +10,6 @@ helm template . --output-dir=rendered
 
 helm package nginx-demo
 
-helm install --namespace knowledge-sharing-demo nginx-demo ./nginx-demo-0.1.0.tgz -f values.yaml
+helm install --namespace knowledge-sharing nginx-demo ./nginx-demo-0.1.0.tgz -f values.yaml
 ```
+

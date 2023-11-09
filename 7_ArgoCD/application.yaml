@@ -1,25 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: umbrella-demo-app
+  name: knowledge-sharing-app
   namespace: argocd
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: knowledge-sharing-demo
+    namespace: apps
   project: default
   source:
     repoURL: 'https://github.com/pdffiller/common-microservices-infra'
-    path: apps/nginx-app-demo/dev
-    targetRevision: main-chart-demo
+    path: apps/knowledge-sharing-app/dev
+    targetRevision: knowledge-sharing-app
     helm:
       valueFiles:
         - values.yaml
       parameters:
         - name: global.app_name
-          value: nginx-demo
+          value: knowledge-sharing-app
         - name: global.namespace
-          value: knowledge-sharing-demo
+          value: apps
         - name: global.environment
           value: cinfra-dev
         - name: global.metric_prefix
@@ -27,9 +27,9 @@ spec:
         - name: global.git.repoURL
           value: 'https://github.com/pdffiller/common-microservices-infra'
         - name: global.git.revision
-          value: main-chart-demo
+          value: knowledge-sharing-app
         - name: global.git.path
-          value: apps/nginx-app-demo/dev
+          value: apps/knowledge-sharing-app/dev
       values: |
         global:
           logs:
@@ -39,20 +39,11 @@ spec:
             gateways:
             - infra-istio/general-http-trust
             hosts:
-            - nginx-app-demo.infrateam-dev.xyz
+            - knowledge-sharing-app.infrateam-dev.xyz
       version: v3
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     retry: {}
-  ignoreDifferences:
-    - group: apps
-      kind: Deployment
-      jsonPointers:
-        - /spec/replicas
-    - group: argoproj.io
-      kind: Rollout
-      jsonPointers:
-        - /spec/replicas
 

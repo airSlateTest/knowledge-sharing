@@ -1,0 +1,6 @@
+nginx-demo-1:
+  image:
+    tag: "1.25.3"
+nginx-demo-2:
+  image:
+    tag: "1.25.3-alpine"
